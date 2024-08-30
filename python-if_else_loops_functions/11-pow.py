@@ -6,4 +6,7 @@ def pow(a, b):
     result = 1.0
     for _ in range(b):
         result *= a
-    return round(result, 2)
+    # Format the result to 2 decimal places if it is effectively an integer
+    if result == int(result):
+        return float(f"{result:.2f}")
+    return float(f"{result:.10g}")
