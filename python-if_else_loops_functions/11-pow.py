@@ -6,4 +6,4 @@ def pow(a, b):
     result = 1
     for _ in range(b):
         result *= a
-    print(f"{result:.15g}")
+    return result
