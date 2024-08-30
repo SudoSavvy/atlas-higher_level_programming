@@ -1,7 +1,9 @@
 #!/usr/bin/python3
-def add(a, b)
-    print(a + b)
+def add(a, b):
+    return a + b
 
+# Example usage
 a = 5
 b = 13
-add(a, b)
+result = add(a, b)
+print(result)
