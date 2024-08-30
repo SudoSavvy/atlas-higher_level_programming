@@ -6,5 +6,5 @@ def pow(a, b):
     result = 1.0
     for _ in range(b):
         result *= a
-    # Ensure result is formatted with appropriate precision
-    return "{:.10g}".format(result)
+    # Ensure the result is formatted to the maximum precision required
+    return "{:.15e}".format(result)
