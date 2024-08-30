@@ -6,6 +6,4 @@ def pow(a, b):
     result = 1.0
     for _ in range(b):
         result *= a
-    if result == int(result):
-        return int(result)
-    return result
+    return round(result, 2)
