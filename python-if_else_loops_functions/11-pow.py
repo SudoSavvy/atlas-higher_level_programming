@@ -6,7 +6,5 @@ def pow(a, b):
     result = 1.0
     for _ in range(b):
         result *= a
-    # Format the result to 2 decimal places if it is effectively an integer
-    if result == int(result):
-        return float(f"{result:.2f}")
+    # Adjust the output to be consistent with floating-point representation
     return float(f"{result:.10g}")
