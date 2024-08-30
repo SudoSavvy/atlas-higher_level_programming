@@ -6,7 +6,7 @@ def pow(a, b):
     result = 1.0
     for _ in range(b):
         result *= a
-    # Format the result to handle precision correctly
+    # Formatting to match the precision required for all cases
     if result == int(result):
-        return "{:.0f}".format(result)
-    return "{:.10f}".format(result).rstrip('0').rstrip('.')
+        return str(int(result))
+    return "{:.15e}".format(result)
