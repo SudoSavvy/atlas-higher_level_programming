@@ -6,4 +6,4 @@ def pow(a, b):
     result = 1
     for _ in range(b):
         result *= a
-    return format(result, '.2f')
+    return round(result, 2)
