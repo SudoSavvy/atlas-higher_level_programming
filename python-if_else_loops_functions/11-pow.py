@@ -3,8 +3,8 @@ def pow(a, b):
     if b < 0:
         a = 1 / a
         b = -b
-    result = 1.0
+    result = 1
     for _ in range(b):
         result *= a
-    # Adjust the output to be consistent with floating-point representation
-    return float(f"{result:.10g}")
+    # Format result to ensure correct precision
+    return "{:.10g}".format(result)
