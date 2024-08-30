@@ -6,8 +6,6 @@ def add(a, b):
     except TypeError:
         return None
 
-print(add(100, -2))
-print(add(-100, -2))
-print(add(0, 0))
-print(add(98, "Holberton"))
-print(add(1, 2))
+result = add(98, "Holberton")
+if result is not None:
+    print(result)
