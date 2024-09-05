@@ -10,9 +10,3 @@ class Square:
     Currently, it has no properties or methods.
     """
     pass
-
-
-# Test the Square class
-mysquare = Square()
-print(type(mysquare))
-print(mysquare.__dict__)
