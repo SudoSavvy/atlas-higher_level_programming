@@ -4,6 +4,7 @@ This module defines a Square class with a private size attribute.
 The class includes validation to ensure size is an integer and >= 0.
 """
 
+
 class Square:
     """
     A class that defines a square with a private size attribute.
@@ -19,5 +20,5 @@ class Square:
             raise TypeError("size must be an integer")
         if size < 0:
             raise ValueError("size must be >= 0")
-        
+
         self.__size = size
