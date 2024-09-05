@@ -14,5 +14,5 @@ class Square:
 
 # Test the Square class
 mysquare = Square()
-print(type(mysquare))         # Expected: <class '__main__.Square'>
-print(mysquare.__dict__)      # Expected: {}
+print(type(mysquare))
+print(mysquare.__dict__)
