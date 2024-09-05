@@ -5,6 +5,7 @@ The class includes validation to ensure size is an integer and >= 0,
 and provides a method to compute the area of the square.
 """
 
+
 class Square:
     """
     A class that defines a square with a private size attribute.
