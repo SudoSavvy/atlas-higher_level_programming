@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import unittest
-from max_integer import max_integer  # Ensure you import the function correctly
+from max_integer import max_integer  # Ensure this import is correct
 
 class TestMaxInteger(unittest.TestCase):
     def test_normal_case(self):
