@@ -11,7 +11,6 @@ Raises:
 - TypeError: If `text` is not a string.
 """
 
-
 def text_indentation(text):
     """
     Prints text with two new lines after each '.', '?', and ':'.
