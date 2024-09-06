@@ -35,4 +35,5 @@ def text_indentation(text):
 
 # For testing purposes:
 if __name__ == "__main__":
-    text = "Holberton School. Ho
+    text = "Holberton School. How are you: John? This is a test."
+    text_indentation(text)
