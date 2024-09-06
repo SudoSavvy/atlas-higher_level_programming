@@ -1,0 +1,38 @@
+>>> def text_indentation(text):
+...     """Prints a text with two new lines after each of these characters: ., ? and :."""
+...     if not isinstance(text, str):
+...         raise TypeError("text must be a string")
+...     result = ""
+...     for char in text:
+...         result += char
+...         if char in ('.', '?', ':'):
+...             result += "\n\n"
+...     for line in result.strip().split("\n"):
+...         print(line.strip())
+...
+
+>>> text_indentation("Hello. How are you? I am fine: thank you.")
+Hello
+
+How are you
+
+I am fine
+
+thank you
+
+>>> text_indentation("Hello world. This is a test.")
+Hello world
+
+This is a test
+
+>>> text_indentation("This is a test.")
+This is a test
+
+>>> text_indentation("No special characters")
+No special characters
+
+>>> try:
+...     text_indentation(123)
+... except TypeError as e:
+...     print(e)
+text must be a string
