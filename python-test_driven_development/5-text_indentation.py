@@ -13,31 +13,26 @@ Raises:
 
 def text_indentation(text):
     """
-    Prints text with two new lines after each '.', '?', and ':'.
-    
-    Args:
-        text (str): The text to format and print.
-        
-    Raises:
-        TypeError: If `text` is not a string.
+    Prints a text with two new lines after each of these characters: ., ? and :
+    Arguments:
+    text -- the text to be processed
     """
     if not isinstance(text, str):
         raise TypeError("text must be a string")
     
-    formatted_text = ""
+    result = ""
     i = 0
     while i < len(text):
-        if text[i] in ('.', '?', ':'):
-            formatted_text += text[i]
-            formatted_text += '\n\n'
-            # Skip additional spaces after punctuation
-            while i + 1 < len(text) and text[i + 1] == ' ':
-                i += 1
-        else:
-            formatted_text += text[i]
+        result += text[i]
+        if text[i] in ".?:":
+            if i + 1 < len(text) and text[i + 1] == ' ':
+                i += 1  # Skip the space after the punctuation
+            result += '\n\n'
         i += 1
     
-    # Remove leading and trailing spaces from each line and print
-    lines = formatted_text.strip().split('\n')
-    for line in lines:
-        print(line.strip())
+    # Remove any leading/trailing white spaces from each line
+    print('\n'.join(line.strip() for line in result.split('\n')))
+
+# For testing purposes:
+if __name__ == "__main__":
+    text = "Holberton School. Ho
