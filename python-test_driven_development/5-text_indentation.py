@@ -25,21 +25,22 @@ def text_indentation(text):
     while i < len(text):
         result += text[i]
         if text[i] in ".?:":
-            # Check next character and remove any leading spaces
+            # Move to the next character and add new lines
+            result += '\n\n'
+            # Skip any spaces after the punctuation
             while i + 1 < len(text) and text[i + 1] == ' ':
                 i += 1
-            result += '\n\n'
         i += 1
 
     # Remove leading and trailing spaces from each line
     lines = result.split('\n')
     cleaned_lines = [line.strip() for line in lines]
     final_result = '\n'.join(cleaned_lines)
-    
+
     # Print the final result
-    print(final_result)
+    print(final_result, end="")
 
 # For testing purposes:
 if __name__ == "__main__":
-    text = "Holberton. School? How are you: John?"
+    text = "Holberton School"
     text_indentation(text)
