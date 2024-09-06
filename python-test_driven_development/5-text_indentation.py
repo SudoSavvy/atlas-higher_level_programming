@@ -27,14 +27,17 @@ def text_indentation(text):
     formatted_text = ""
     i = 0
     while i < len(text):
-        formatted_text += text[i]
         if text[i] in ('.', '?', ':'):
-            if i + 1 < len(text) and text[i + 1] == ' ':
-                formatted_text += '\n\n'
+            formatted_text += text[i]
+            formatted_text += '\n\n'
+            # Skip additional spaces after punctuation
+            while i + 1 < len(text) and text[i + 1] == ' ':
                 i += 1
-            else:
-                formatted_text += '\n\n'
+        else:
+            formatted_text += text[i]
         i += 1
-
-    for line in formatted_text.strip().split("\n"):
+    
+    # Remove leading and trailing spaces from each line and print
+    lines = formatted_text.strip().split('\n')
+    for line in lines:
         print(line.strip())
