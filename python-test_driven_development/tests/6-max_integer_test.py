@@ -1,26 +1,29 @@
 #!/usr/bin/python3
-"""
-This module contains the max_integer function.
-"""
+import unittest
+from max_integer import max_integer  # Import the function
 
-def max_integer(lst=[]):
-    """
-    Function to find the maximum integer in a list of integers.
+class TestMaxInteger(unittest.TestCase):
+    def test_normal_case(self):
+        """Test case with normal integers"""
+        self.assertEqual(max_integer([1, 2, 3, 4]), 4)
+        self.assertEqual(max_integer([-1, -2, -3, -4]), -1)
+        self.assertEqual(max_integer([0, 0, 0, 0]), 0)
 
-    Args:
-        lst (list): List of integers. Default is an empty list.
+    def test_single_element(self):
+        """Test case with a single element"""
+        self.assertEqual(max_integer([5]), 5)
+        self.assertEqual(max_integer([-3]), -3)
 
-    Returns:
-        int: The maximum integer from the list. If the list is empty, returns None.
+    def test_empty_list(self):
+        """Test case with an empty list"""
+        self.assertIsNone(max_integer([]))
 
-    Raises:
-        TypeError: If the list contains non-integer values.
-    """
-    if not all(isinstance(i, int) for i in lst):
-        raise TypeError("list must contain only integers")
+    def test_floats(self):
+        """Test case with floats"""
+        self.assertEqual(max_integer([1.1, 2.2, 3.3, 4.4]), 4.4)
+        self.assertEqual(max_integer([-1.1, -2.2, -3.3, -4.4]), -1.1)
 
-    if len(lst) == 0:
-        return None
-
-    max_int = lst[0]
-    for num in
+    def test_mixed_numbers(self):
+        """Test case with mixed integers and floats"""
+        self.assertEqual(max_integer([1, 2.5, 3]), 3)
+        self.assertEqual(max_integer([-
