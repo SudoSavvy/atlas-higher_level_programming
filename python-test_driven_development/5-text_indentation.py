@@ -19,7 +19,7 @@ def text_indentation(text):
     """
     if not isinstance(text, str):
         raise TypeError("text must be a string")
-    
+
     result = ""
     i = 0
     while i < len(text):
@@ -29,11 +29,16 @@ def text_indentation(text):
                 i += 1  # Skip the space after the punctuation
             result += '\n\n'
         i += 1
+
+    # Remove leading and trailing spaces from each line
+    lines = result.split('\n')
+    cleaned_lines = [line.strip() for line in lines]
+    final_result = '\n'.join(cleaned_lines).strip()
     
-    # Remove any leading/trailing white spaces from each line
-    print('\n'.join(line.strip() for line in result.split('\n')))
+    # Print the final result
+    print(final_result)
 
 # For testing purposes:
 if __name__ == "__main__":
-    text = "Holberton School. How are you: John? This is a test."
+    text = "Holberton. School? How are you: John?"
     text_indentation(text)
