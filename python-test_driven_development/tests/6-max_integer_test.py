@@ -1,19 +1,6 @@
 #!/usr/bin/python3
-# 6-max_integer_test.py
-
 import unittest
-
-def max_integer(lst):
-    """Function to find the maximum integer in a list"""
-    if len(lst) == 0:
-        return None
-    max_int = lst[0]
-    for num in lst:
-        if not isinstance(num, (int, float)):
-            raise TypeError("List must contain only integers or floats")
-        if num > max_int:
-            max_int = num
-    return max_int
+from max_integer import max_integer  # Import the function
 
 class TestMaxInteger(unittest.TestCase):
     def test_normal_case(self):
@@ -48,3 +35,4 @@ class TestMaxInteger(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+s
