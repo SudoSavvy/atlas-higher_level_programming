@@ -1,4 +1,11 @@
 #!/usr/bin/python3
+"""
+This module contains a function to divide all elements of a matrix by a given number.
+The function ensures the matrix is a list of lists of integers/floats, and raises
+appropriate exceptions for invalid inputs.
+"""
+
+
 def matrix_divided(matrix, div):
     """Divides all elements of a matrix by a number and returns a new matrix.
 
