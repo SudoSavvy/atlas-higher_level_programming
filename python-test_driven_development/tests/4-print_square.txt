@@ -1,0 +1,26 @@
+>>> from 4-print_square import print_square
+>>> print_square(3)
+###
+###
+###
+>>> print_square(1)
+#
+>>> print_square(0)
+
+>>> try:
+...     print_square(-1)
+... except ValueError as e:
+...     print(e)
+size must be >= 0
+
+>>> try:
+...     print_square(2.5)
+... except TypeError as e:
+...     print(e)
+size must be an integer
+
+>>> try:
+...     print_square("size")
+... except TypeError as e:
+...     print(e)
+size must be an integer
