@@ -14,8 +14,10 @@
 ###
 ###
 ###
+
 >>> print_square(1)
 #
+
 >>> print_square(0)
 
 >>> try:
@@ -35,3 +37,8 @@ size must be an integer
 ... except TypeError as e:
 ...     print(e)
 size must be an integer
+
+>>> try:
+...     print_square()
+... except TypeError as e:
+...     print(e)
