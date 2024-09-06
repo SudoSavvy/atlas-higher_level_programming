@@ -25,15 +25,16 @@ def text_indentation(text):
     while i < len(text):
         result += text[i]
         if text[i] in ".?:":
-            if i + 1 < len(text) and text[i + 1] == ' ':
-                i += 1  # Skip the space after the punctuation
+            # Check next character and remove any leading spaces
+            while i + 1 < len(text) and text[i + 1] == ' ':
+                i += 1
             result += '\n\n'
         i += 1
 
     # Remove leading and trailing spaces from each line
     lines = result.split('\n')
     cleaned_lines = [line.strip() for line in lines]
-    final_result = '\n'.join(cleaned_lines).strip()
+    final_result = '\n'.join(cleaned_lines)
     
     # Print the final result
     print(final_result)
