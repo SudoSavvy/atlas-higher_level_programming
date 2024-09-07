@@ -36,6 +36,10 @@ Expected Output: ValueError: cannot convert float NaN to integer
 Input: float('inf'), 1
 Expected Output: OverflowError
 
-# 10. Test with large integer values
-Input: 999999999, 1
-Expected Output: 1000000000
+# 10. Test with missing one argument
+Input: 1
+Expected Output: 99  # Default value of b is 98
+
+# 11. Test with missing both arguments
+Input: 
+Expected Output: TypeError: add_integer() missing 
