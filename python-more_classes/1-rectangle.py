@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """
 This module defines a Rectangle class with private instance attributes
 for width and height. It includes validation for the attributes to ensure
