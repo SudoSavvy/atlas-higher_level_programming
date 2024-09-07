@@ -9,7 +9,6 @@ Classes:
                to calculate area, perimeter, and print the rectangle.
 """
 
-
 class Rectangle:
     """
     A class that defines a rectangle.
@@ -96,4 +95,4 @@ class Rectangle:
 
     def __repr__(self):
         """Return a string representation of the rectangle for debugging."""
-        return f"Rectangle(width={self.__width}, height={self.__height})"
+        return f"<{self.__class__.__name__} object at {hex(id(self))}>"
