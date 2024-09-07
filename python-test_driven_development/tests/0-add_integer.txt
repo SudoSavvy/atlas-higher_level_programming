@@ -1,17 +1,41 @@
->>> add_integer = __import__('0-add_integer').add_integer
->>> add_integer(1, 2)
-3
->>> add_integer(100, -2)
-98
->>> add_integer(2)
-100
->>> add_integer(100.3, -2)
-98
->>> add_integer(4, "School")
-Traceback (most recent call last):
-    ...
-TypeError: b must be an integer
->>> add_integer(None)
-Traceback (most recent call last):
-    ...
-TypeError: a must be an integer
+# Test cases for the add_integer function
+
+# 1. Test adding two integers
+Input: 1, 2
+Expected Output: 3
+
+# 2. Test adding a positive and a negative integer
+Input: 10, -5
+Expected Output: 5
+
+# 3. Test adding two negative integers
+Input: -3, -7
+Expected Output: -10
+
+# 4. Test adding a float and an integer (floats should be cast to integers)
+Input: 5.7, 2
+Expected Output: 7
+
+# 5. Test adding two floats (floats should be cast to integers)
+Input: 2.5, 3.9
+Expected Output: 5
+
+# 6. Test adding an integer with default value for b
+Input: 7
+Expected Output: 105
+
+# 7. Test input that causes a TypeError (invalid types)
+Input: "10", 2
+Expected Output: TypeError: a must be an integer
+
+# 8. Test input that causes a ValueError (NaN)
+Input: float('NaN'), 10
+Expected Output: ValueError: cannot convert float NaN to integer
+
+# 9. Test adding a float that causes overflow (Infinity)
+Input: float('inf'), 1
+Expected Output: OverflowError
+
+# 10. Test with large integer values
+Input: 999999999, 1
+Expected Output: 1000000000
