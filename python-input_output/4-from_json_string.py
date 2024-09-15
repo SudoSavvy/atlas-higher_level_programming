@@ -21,12 +21,13 @@ def from_json_string(my_str):
             return False
         elif value == 'null':
             return None
-        elif value.isdigit() or (value.startswith('-') and value[1:].isdigit()):
-            return int(value)
         try:
-            return float(value)
+            return int(value)
         except ValueError:
-            raise ValueError("Unsupported type")
+            try:
+                return float(value)
+            except ValueError:
+                raise ValueError("Unsupported type")
 
     def parse_list(s):
         """Parse a JSON array."""
@@ -58,7 +59,9 @@ def from_json_string(my_str):
         in_key = True
         in_value = False
         depth = 0
-        for char in items:
+        i = 0
+        while i < len(items):
+            char = items[i]
             if char == '{':
                 depth += 1
             elif char == '}':
@@ -66,20 +69,33 @@ def from_json_string(my_str):
             elif char == ':' and depth == 0:
                 in_key = False
                 in_value = True
+                i += 1
+                continue
             elif char == ',' and depth == 0:
-                result[key] = parse_value(value)
+                result[key.strip('"\'')] = parse_value(value)
                 key = ''
                 value = ''
                 in_key = True
                 in_value = False
+            elif char == '"' or char == "'":
+                if in_key:
+                    if key:
+                        key += char
+                    else:
+                        key = char
+                elif in_value:
+                    value += char
             else:
                 if in_key:
                     key += char
                 elif in_value:
                     value += char
-        result[key] = parse_value(value)
+            i += 1
+        if key:
+            result[key.strip('"\'')] = parse_value(value)
         return result
 
+    my_str = my_str.strip()
     if my_str.startswith('[') and my_str.endswith(']'):
         return parse_list(my_str)
     elif my_str.startswith('{') and my_str.endswith('}'):
@@ -94,10 +110,7 @@ if __name__ == "__main__":
     print(my_list)
     print(type(my_list))
 
-    s_my_dict = """
-    {"is_active": true, "info": {"age": 36, "average": 3.14}, 
-    "id": 12, "name": "John", "places": ["San Francisco", "Tokyo"]}
-    """
+    s_my_dict = "{ 'id': 12 }"
     my_dict = from_json_string(s_my_dict)
     print(my_dict)
     print(type(my_dict))
