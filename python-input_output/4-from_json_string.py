@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 """Module for converting a JSON string to a Python object."""
 
+class JSONDecodeError(ValueError):
+    """Custom exception for JSON decode errors."""
+    pass
+
 def from_json_string(my_str):
     """Convert a JSON string representation to a Python object.
 
@@ -11,7 +15,7 @@ def from_json_string(my_str):
         object: The corresponding Python data structure.
 
     Raises:
-        ValueError: If the input string is not a valid JSON-like format.
+        JSONDecodeError: If the input string is not a valid JSON-like format.
     """
     def parse_value(value):
         """Parse and convert a string value to the appropriate Python data type.
@@ -23,7 +27,7 @@ def from_json_string(my_str):
             The corresponding Python data type (str, int, float, bool, None, list, dict).
 
         Raises:
-            ValueError: If the value cannot be converted to a supported Python type.
+            JSONDecodeError: If the value cannot be converted to a supported Python type.
         """
         value = value.strip()
         if value == "true":
@@ -45,7 +49,7 @@ def from_json_string(my_str):
                 try:
                     return float(value)
                 except ValueError:
-                    raise ValueError("Unsupported type")
+                    raise JSONDecodeError("Unsupported type")
 
     def parse_array(array_str):
         """Parse a JSON-like array string and convert it into a Python list.
@@ -72,7 +76,7 @@ def from_json_string(my_str):
             dict: The corresponding Python dictionary.
         
         Raises:
-            ValueError: If the dictionary string is malformed.
+            JSONDecodeError: If the dictionary string is malformed.
         """
         dict_str = dict_str[1:-1].strip()  # Remove surrounding braces
         if not dict_str:
@@ -81,7 +85,7 @@ def from_json_string(my_str):
         result = {}
         for item in items:
             if ':' not in item:
-                raise ValueError("Malformed dictionary item")
+                raise JSONDecodeError(f"Expecting ':' delimiter: {item}")
             key, value = item.split(':', 1)
             key = parse_value(key.strip())
             value = parse_value(value.strip())
@@ -156,7 +160,7 @@ def from_json_string(my_str):
     elif my_str.startswith('"') and my_str.endswith('"'):
         return my_str[1:-1]  # Remove surrounding quotes for strings
     else:
-        raise ValueError("Unsupported JSON string format")
+        raise JSONDecodeError("Unsupported JSON string format")
 
 # Sample usage
 if __name__ == "__main__":
