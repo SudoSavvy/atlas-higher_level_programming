@@ -33,5 +33,4 @@ class Rectangle(BaseGeometry):
 if __name__ == "__main__":
     import sys
     rectangle = Rectangle(5, 10)
-    print(dir(Rectangle))
-    print(issubclass(Rectangle, BaseGeometry))
+    print(issubclass(Rectangle, BaseGeometry))  # Should output True
