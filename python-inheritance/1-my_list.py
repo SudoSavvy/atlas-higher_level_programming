@@ -10,7 +10,3 @@ class MyList(list):
     def print_sorted(self):
         """Prints the list elements in sorted (ascending) order."""
         print(sorted(self))
-
-    def __str__(self):
-        """Return a string representation of the list."""
-        return super().__str__()
