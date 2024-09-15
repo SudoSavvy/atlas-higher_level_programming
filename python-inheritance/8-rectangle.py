@@ -24,13 +24,3 @@ class Rectangle(BaseGeometry):
     def __str__(self):
         """Return a string representation of the Rectangle."""
         return f"[Rectangle] {self.__width}/{self.__height}"
-
-    @property
-    def width(self):
-        """Return the width of the Rectangle."""
-        return self.__width
-
-    @property
-    def height(self):
-        """Return the height of the Rectangle."""
-        return self.__height
