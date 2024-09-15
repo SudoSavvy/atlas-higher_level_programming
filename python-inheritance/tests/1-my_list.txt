@@ -1,25 +1,18 @@
-# Test Case 1: Instantiation and Inheritance
-# Expected Output: True
-MyList([1, 2, 3])
-print(isinstance(my_list, list))
+>>> from my_list import MyList
+>>> my_list = MyList([1, 2, 3])
+>>> isinstance(my_list, list)
+True
 
-# Test Case 2: Print Sorted with Unsorted Append
-# Expected Output:
-# [0, 1, 2, 3]
-# [1, 2, 3, 0]
-my_list = MyList([1, 2, 3])
-my_list.append(0)
-my_list.print_sorted()
-print(my_list)
+>>> my_list.append(0)
+>>> my_list.print_sorted()
+[0, 1, 2, 3]
+>>> print(my_list)
+[1, 2, 3, 0]
 
-# Test Case 3: Print Sorted with Negative Numbers
-# Expected Output:
-# [-1, 2, 3]
-my_list = MyList([3, -1, 2])
-my_list.print_sorted()
+>>> my_list = MyList([3, -1, 2])
+>>> my_list.print_sorted()
+[-1, 2, 3]
 
-# Test Case 4: Print Sorted with Empty List
-# Expected Output:
-# []
-my_list = MyList()
-my_list.print_sorted()
+>>> my_list = MyList()
+>>> my_list.print_sorted()
+[]
