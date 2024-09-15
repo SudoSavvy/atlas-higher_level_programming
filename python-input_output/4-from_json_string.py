@@ -95,7 +95,8 @@ def from_json_string(my_str):
             result[key.strip('"\'')] = parse_value(value)
         return result
 
-    my_str = my_str.strip()
+    # Replace single quotes with double quotes to match JSON standard
+    my_str = my_str.replace("'", '"').strip()
     if my_str.startswith('[') and my_str.endswith(']'):
         return parse_list(my_str)
     elif my_str.startswith('{') and my_str.endswith('}'):
@@ -110,7 +111,7 @@ if __name__ == "__main__":
     print(my_list)
     print(type(my_list))
 
-    s_my_dict = "{ 'id': 12 }"
+    s_my_dict = "{ 'id': 12, 'numbers': [1, 2, 4] }"
     my_dict = from_json_string(s_my_dict)
     print(my_dict)
     print(type(my_dict))
