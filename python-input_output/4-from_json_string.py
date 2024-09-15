@@ -1,47 +1,18 @@
 #!/usr/bin/python3
 """Module for converting a JSON string to a Python object."""
 
+
 def from_json_string(my_str):
-    """
-    Parses a JSON-like string and converts it into a Python data structure.
+    """Convert a JSON string representation to a Python object.
 
     Args:
-        my_str (str): A JSON-like string representation of a Python data structure.
+        my_str (str): The JSON string to convert.
 
     Returns:
-        The Python data structure represented by the JSON-like string. This can be
-        a list, dictionary, string, integer, float, boolean, or None.
-
-    Raises:
-        ValueError: If the input string is empty or cannot be parsed into a valid Python
-                    data structure.
-
-    Example:
-        >>> from_json_string('{"id": 12, "numbers": [1, 2, 4]}')
-        {'id': 12, 'numbers': [1, 2, 4]}
-
-        >>> from_json_string('"Simple string"')
-        'Simple string'
-
-        >>> from_json_string('[true, false, null]')
-        [True, False, None]
-
-        >>> from_json_string('{"key": "value", "numbers": [1, 2]}')
-        {'key': 'value', 'numbers': [1, 2]}
+        object: The corresponding Python data structure.
     """
     def parse_value(value):
-        """
-        Parses a string value and converts it into the appropriate Python data type.
-
-        Args:
-            value (str): The string value to parse.
-
-        Returns:
-            The corresponding Python data type (str, int, float, bool, None, list, dict).
-
-        Raises:
-            ValueError: If the value cannot be converted to a supported Python type.
-        """
+        # Remove surrounding quotes for strings
         value = value.strip()
         if value == "true":
             return True
@@ -50,89 +21,97 @@ def from_json_string(my_str):
         elif value == "null":
             return None
         elif value.startswith('"') and value.endswith('"'):
-            return value[1:-1]
+            return value[1:-1]  # Return string without surrounding quotes
         elif value.startswith('[') and value.endswith(']'):
-            return parse_list(value)
+            return parse_array(value)
         elif value.startswith('{') and value.endswith('}'):
             return parse_dict(value)
-        try:
-            return int(value)
-        except ValueError:
-            pass
-        try:
-            return float(value)
-        except ValueError:
-            raise ValueError("Unsupported type")
+        else:
+            try:
+                return int(value)
+            except ValueError:
+                try:
+                    return float(value)
+                except ValueError:
+                    raise ValueError("Unsupported type")
 
-    def parse_list(value):
-        """
-        Parses a JSON-like list string and converts it into a Python list.
+    def parse_array(array_str):
+        # Remove surrounding brackets
+        array_str = array_str[1:-1].strip()
+        elements = split_elements(array_str)
+        return [parse_value(element) for element in elements]
 
-        Args:
-            value (str): The JSON-like list string to parse.
-
-        Returns:
-            A Python list containing the parsed elements.
-        """
-        value = value[1:-1].strip()
-        if not value:
-            return []
-        elements = split_elements(value)
-        return [parse_value(el) for el in elements]
-
-    def parse_dict(value):
-        """
-        Parses a JSON-like dictionary string and converts it into a Python dictionary.
-
-        Args:
-            value (str): The JSON-like dictionary string to parse.
-
-        Returns:
-            A Python dictionary containing the parsed key-value pairs.
-        """
-        value = value[1:-1].strip()
-        if not value:
-            return {}
-        items = split_elements(value, dict_mode=True)
+    def parse_dict(dict_str):
+        # Remove surrounding braces
+        dict_str = dict_str[1:-1].strip()
+        items = split_items(dict_str)
         result = {}
         for item in items:
-            key, val = item.split(':', 1)
-            result[parse_value(key)] = parse_value(val)
+            key, value = item.split(':', 1)
+            key = parse_value(key.strip())
+            value = parse_value(value.strip())
+            result[key] = value
         return result
 
-    def split_elements(value, dict_mode=False):
-        """
-        Splits a JSON-like string into its constituent elements (for lists or dictionaries).
-
-        Args:
-            value (str): The JSON-like string to split.
-            dict_mode (bool): If True, split by dictionary item delimiters (':', ',').
-
-        Returns:
-            A list of elements extracted from the input string.
-        """
-        elements = []
+    def split_elements(s):
+        # Split by commas that are outside of nested structures
         depth = 0
+        result = []
         current = []
-        in_string = False
-        for char in value:
-            if char == '"' and (not in_string or (current and current[-1] != '\\')):
-                in_string = not in_string
-            if not in_string:
-                if char == '{' or char == '[':
+        for char in s:
+            if char in '[]{}':
+                if char in '[{':
                     depth += 1
-                elif char == '}' or char == ']':
+                elif char in ']}':
                     depth -= 1
-                if depth == 0 and char in ',:' and not in_string:
-                    elements.append(''.join(current).strip())
-                    current = []
-                else:
-                    current.append(char)
+            if char == ',' and depth == 0:
+                result.append(''.join(current).strip())
+                current = []
+            else:
+                current.append(char)
         if current:
-            elements.append(''.join(current).strip())
-        return elements
+            result.append(''.join(current).strip())
+        return result
 
-    if not my_str:
-        raise ValueError("Empty string is not valid JSON")
+    def split_items(s):
+        # Split by commas that are outside of nested structures
+        depth = 0
+        result = []
+        current = []
+        in_quotes = False
+        for char in s:
+            if char == '"':
+                in_quotes = not in_quotes
+            if char in '[]{}':
+                if char in '[{':
+                    depth += 1
+                elif char in ']}':
+                    depth -= 1
+            if char == ',' and depth == 0 and not in_quotes:
+                result.append(''.join(current).strip())
+                current = []
+            else:
+                current.append(char)
+        if current:
+            result.append(''.join(current).strip())
+        return result
 
-    return parse_value(my_str)
+    # Remove surrounding whitespaces
+    my_str = my_str.strip()
+    
+    # Start parsing based on the type of JSON object
+    if my_str.startswith('[') and my_str.endswith(']'):
+        return parse_array(my_str)
+    elif my_str.startswith('{') and my_str.endswith('}'):
+        return parse_dict(my_str)
+    elif my_str.startswith('"') and my_str.endswith('"'):
+        return my_str[1:-1]  # Return string without surrounding quotes
+    else:
+        raise ValueError("Unsupported JSON string format")
+
+# Sample usage
+if __name__ == "__main__":
+    s_data = '"Simple string"'
+    data = from_json_string(s_data)
+    print(data)
+    print(type(data))
