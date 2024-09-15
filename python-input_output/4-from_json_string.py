@@ -20,7 +20,7 @@ def from_json_string(my_str):
         elif value == "null":
             return None
         elif value.startswith('"') and value.endswith('"'):
-            return value[1:-1]
+            return value[1:-1]  # Return string without surrounding quotes
         elif value.startswith('[') and value.endswith(']'):
             return parse_array(value)
         elif value.startswith('{') and value.endswith('}'):
@@ -103,12 +103,14 @@ def from_json_string(my_str):
         return parse_array(my_str)
     elif my_str.startswith('{') and my_str.endswith('}'):
         return parse_dict(my_str)
+    elif my_str.startswith('"') and my_str.endswith('"'):
+        return my_str[1:-1]  # Return string without surrounding quotes
     else:
         raise ValueError("Unsupported JSON string format")
 
 # Sample usage
 if __name__ == "__main__":
-    s_data = "{ 'id': 12, 'numbers': [1, 2, 4] }"
+    s_data = '"Simple string"'
     data = from_json_string(s_data)
     print(data)
     print(type(data))
