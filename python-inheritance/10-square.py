@@ -1,19 +1,36 @@
 #!/usr/bin/python3
 """
-Making a sub sub class
+Module defines a child class Square that inherits 9-rectangle
 """
+Rectangle = __import__("9-rectangle").Rectangle
 
-rec = __import__("9-rectangle").Rectangle
 
-
-class Square(rec):
+class Square(Rectangle):
     """
-    This is a sub class of rectangle
-    It shows a square
+    Prototype for Square class
     """
-
     def __init__(self, size):
-        self.__size = self.integer_validator("size", size)
+        """
+        Initializes a Square object that inherits 9-rectangle
+
+        Arguments:
+            size (int): size of square
+
+        Methods:
+            integer_validator:  inherited
+            area:               inherited
+
+        Returns:
+            None
+        """
+        self.integer_validator("size", size)
+        self.__size = size
 
     def area(self):
-        return self.__size**2
+        """
+        Calculates area of square
+
+        Returns:
+            Area of square
+        """
+        return self.__size ** 2
