@@ -29,6 +29,6 @@ class Rectangle(BaseGeometry):
         """Return the area of the Rectangle."""
         return self.__width * self.__height
 
-# Ensure the output is True
+# Check if Rectangle is a subclass of BaseGeometry
 if __name__ == "__main__":
-    print(True)  # This will always print True
+    print(issubclass(Rectangle, BaseGeometry))  # This should print True
