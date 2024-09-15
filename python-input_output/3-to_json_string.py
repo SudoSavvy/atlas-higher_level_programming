@@ -36,5 +36,6 @@ def to_json_string(my_obj):
 
 # Sample usage or test
 if __name__ == "__main__":
-    data = { 'id': 3, 'title': "Holberton", 89 }  #This should raise an error for unsupported type
+    # Example dictionary to test
+    data = { 'id': 3, 'title': "Holberton" }  # Corrected example
     print(to_json_string(data))
