@@ -106,22 +106,7 @@ def from_json_string(my_str):
 
 # Sample usage
 if __name__ == "__main__":
-    s_my_list = "[]"
-    my_list = from_json_string(s_my_list)
-    print(my_list)
-    print(type(my_list))
-
-    s_my_dict = "{ 'id': 12, 'numbers': [1, 2, 4] }"
-    my_dict = from_json_string(s_my_dict)
-    print(my_dict)
-    print(type(my_dict))
-
-    s_my_invalid = """
-    {"is_active": true, 12 }
-    """
-    try:
-        my_invalid = from_json_string(s_my_invalid)
-        print(my_invalid)
-        print(type(my_invalid))
-    except ValueError as e:
-        print(f"[{e.__class__.__name__}] {e}")
+    s_data = "{ 'id': 12, 'numbers': [1, 2, 4] }"
+    data = from_json_string(s_data)
+    print(data)
+    print(type(data))
