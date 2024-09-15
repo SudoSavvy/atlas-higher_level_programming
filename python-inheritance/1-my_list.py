@@ -1,4 +1,4 @@
-# my_list.py
+#!/usr/bin/python3
 """
 This module defines a class MyList that inherits from the built-in list class.
 It provides an additional method to print the list in ascending sorted order.
