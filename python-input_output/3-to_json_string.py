@@ -29,16 +29,12 @@ def to_json_string(my_obj):
             value_str = to_json_string(value)
             items.append(f'{key_str}: {value_str}')
         return '{' + ', '.join(items) + '}'
+    elif isinstance(my_obj, set):
+        raise TypeError("Object of type set is not JSON serializable")
     else:
         raise TypeError("Unsupported type")
 
 # Sample usage or test
 if __name__ == "__main__":
-    data = {
-        "name": "John",
-        "age": 30,
-        "is_student": False,
-        "grades": [88.5, 92.0, 77.3],
-        "courses": {"math": "A", "science": "B"},
-    }
+    data = { 'id': 3, 'title': "Holberton", 89 }  # This should raise an error for unsupported type
     print(to_json_string(data))
