@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module for Rectangle and Square classes."""
+"""Module for BaseGeometry, Rectangle, and Square classes."""
 
 class BaseGeometry:
     """BaseGeometry class with basic validation methods."""
@@ -42,6 +42,6 @@ class Square(Rectangle):
         """Return the area of the Square."""
         return self.__size * self.__size
 
-# Testing to verify correct subclass relationship
+# Test to verify correct subclass relationship
 if __name__ == "__main__":
     print(issubclass(Square, Rectangle))  # Should print True
