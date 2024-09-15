@@ -25,6 +25,10 @@ class Rectangle(BaseGeometry):
         """Return a string representation of the Rectangle."""
         return f"[Rectangle] {self.__width}/{self.__height}"
 
+    def area(self):
+        """Return the area of the Rectangle."""
+        return self.__width * self.__height
+
 # Test cases
 if __name__ == "__main__":
     import sys
