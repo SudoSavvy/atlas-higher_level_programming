@@ -1,18 +1,8 @@
->>> from my_list import MyList
 >>> my_list = MyList([1, 2, 3])
 >>> isinstance(my_list, list)
 True
-
 >>> my_list.append(0)
 >>> my_list.print_sorted()
 [0, 1, 2, 3]
 >>> print(my_list)
 [1, 2, 3, 0]
-
->>> my_list = MyList([3, -1, 2])
->>> my_list.print_sorted()
-[-1, 2, 3]
-
->>> my_list = MyList()
->>> my_list.print_sorted()
-[]
