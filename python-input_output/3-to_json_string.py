@@ -14,11 +14,17 @@ def to_json_string(my_obj):
         return '"' + my_obj.replace('"', '\\"') + '"'
     elif isinstance(my_obj, int):
         return str(my_obj)
+    elif isinstance(my_obj, float):
+        return str(my_obj)
+    elif isinstance(my_obj, bool):
+        return 'true' if my_obj else 'false'
     elif isinstance(my_obj, list):
         return '[' + ', '.join(to_json_string(item) for item in my_obj) + ']'
     elif isinstance(my_obj, dict):
         items = []
         for key, value in my_obj.items():
+            if not isinstance(key, str):
+                raise TypeError("Keys must be strings")
             key_str = to_json_string(key)
             value_str = to_json_string(value)
             items.append(f'{key_str}: {value_str}')
@@ -28,5 +34,11 @@ def to_json_string(my_obj):
 
 # Sample usage or test
 if __name__ == "__main__":
-    obj = {"key": "value", "number": 123, "list": [1, 2, "three"]}
-    print(to_json_string(obj))
+    data = {
+        "name": "John",
+        "age": 30,
+        "is_student": False,
+        "grades": [88.5, 92.0, 77.3],
+        "courses": {"math": "A", "science": "B"},
+    }
+    print(to_json_string(data))
