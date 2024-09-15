@@ -19,10 +19,10 @@ class Rectangle(BaseGeometry):
 
     @property
     def width(self):
-        """Get the width of the Rectangle."""
+        """Return the width of the Rectangle."""
         return self.__width
 
     @property
     def height(self):
-        """Get the height of the Rectangle."""
+        """Return the height of the Rectangle."""
         return self.__height
