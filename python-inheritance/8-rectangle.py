@@ -24,3 +24,10 @@ class Rectangle(BaseGeometry):
     def __str__(self):
         """Return a string representation of the Rectangle."""
         return f"[Rectangle] {self.__width}/{self.__height}"
+
+# Test cases
+if __name__ == "__main__":
+    import sys
+    rectangle = Rectangle(5, 10)
+    print(dir(Rectangle))
+    print(issubclass(Rectangle, BaseGeometry))
