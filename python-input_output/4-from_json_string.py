@@ -85,7 +85,7 @@ def from_json_string(my_str):
         result = {}
         for item in items:
             if ':' not in item:
-                raise JSONDecodeError(f"Expecting ':' delimiter: {item}")
+                raise JSONDecodeError(f"Expecting ':' delimiter: line 1 column {dict_str.find(item) + 1} (char {dict_str.find(item)})")
             key, value = item.split(':', 1)
             key = parse_value(key.strip())
             value = parse_value(value.strip())
@@ -158,7 +158,7 @@ def from_json_string(my_str):
     elif my_str.startswith('{') and my_str.endswith('}'):
         return parse_dict(my_str)
     elif my_str.startswith('"') and my_str.endswith('"'):
-        return my_str[1:-1]  # Remove surrounding quotes for strings
+        return my_str[1:-1]  # Return string without surrounding quotes
     else:
         raise JSONDecodeError("Unsupported JSON string format")
 
