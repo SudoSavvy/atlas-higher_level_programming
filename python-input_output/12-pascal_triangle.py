@@ -1,4 +1,24 @@
 #!/usr/bin/python3
+"""
+This module defines the function `pascal_triangle` that returns
+a list of lists representing Pascal's triangle up to n rows.
+
+Pascal's Triangle:
+- The triangle starts with a single 1 at the top.
+- Each subsequent row starts and ends with 1.
+- Each number inside the row is the sum of the two numbers directly above it.
+- For example, Pascal's triangle of 5 rows is:
+    [1]
+    [1, 1]
+    [1, 2, 1]
+    [1, 3, 3, 1]
+    [1, 4, 6, 4, 1]
+
+Functions:
+- pascal_triangle(n): returns a list of lists representing Pascal's triangle of size n.
+"""
+
+
 def pascal_triangle(n):
     """
     Returns a list of lists representing Pascal's triangle of size n.
