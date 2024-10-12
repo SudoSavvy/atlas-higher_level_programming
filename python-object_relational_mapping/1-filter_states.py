@@ -9,7 +9,6 @@ import MySQLdb
 import sys
 
 if __name__ == "__main__":
-    # Connect to the database
     db = MySQLdb.connect(
         host="localhost",
         user=sys.argv[1],
@@ -17,18 +16,15 @@ if __name__ == "__main__":
         db=sys.argv[3],
         port=3306
     )
-
-    # Create a cursor to execute SQL queries
+    
     cur = db.cursor()
+    cur.execute(
+        "SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id ASC"
+    )
 
-    # Execute the query to find states with names starting with 'N'
-    cur.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id ASC")
-
-    # Fetch and print all the results
     rows = cur.fetchall()
     for row in rows:
         print(row)
 
-    # Close the cursor and connection
     cur.close()
     db.close()
