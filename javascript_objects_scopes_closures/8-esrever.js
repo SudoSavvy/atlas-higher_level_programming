@@ -1,11 +1,9 @@
 #!/usr/bin/node
-exports.nbOccurences = function (list, searchElement) {
-    let count = 0;
-    for (const element of list) {
-      if (element === searchElement) {
-        count++;
-      }
+exports.esrever = function (list) {
+    const reversedList = [];
+    for (let i = list.length - 1; i >= 0; i--) {
+      reversedList.push(list[i]);
     }
-    return count;
+    return reversedList;
   };
   
